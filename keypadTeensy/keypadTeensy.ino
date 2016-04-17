@@ -17,6 +17,7 @@ void setup()
   pinMode(whitePin, INPUT_PULLUP);
   pinMode(redPin, INPUT_PULLUP);
   pinMode(orangePin, INPUT_PULLUP);
+
 }
 
 void loop()
