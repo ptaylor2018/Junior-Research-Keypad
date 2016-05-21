@@ -105,12 +105,14 @@ void loop()
     digitalWrite(ledFourPin, HIGH);
   }
   if (capsSwitch == true) {
-
+  delay(200);
     caps = caps ? false : true;
   }
   if (caps == true) {
+    
     digitalWrite(ledFivePin, HIGH);
   } else {
+    
     digitalWrite(ledFivePin, LOW);
   }
 
