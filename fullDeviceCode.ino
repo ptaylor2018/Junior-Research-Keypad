@@ -84,6 +84,7 @@ void loop()
       keySeq(0,2,2,5);
 
       } */
+// set up 4 state switch for diacritic
   if (acuteSwitch == true) {
     pinsOff();
     acute = true;
@@ -104,6 +105,7 @@ void loop()
     umlaut = true;
     digitalWrite(ledFourPin, HIGH);
   }
+  // set up toggle for CAPSLOCK
   if (capsSwitch == true) {
   delay(200);
     caps = caps ? false : true;
@@ -117,9 +119,10 @@ void loop()
   }
 
 
-
-  
+//setting alt code to be sent to computer
+  //first for lowercase
   if (caps == false) {
+    //starting with acute
     if (acute == true)
     {
       if (aKey == true) {
@@ -138,7 +141,7 @@ void loop()
         keySeq(0, 2, 5, 0);
       }
     }
-
+    //then grave
     if (grave == true)
     {
       if (aKey == true) {
@@ -156,7 +159,7 @@ void loop()
       if (uKey == true) {
         keySeq(0, 2, 4, 9);
       }
-
+    //then circumflex
     }
     if (circumflex == true)
     {
@@ -175,7 +178,7 @@ void loop()
       if (uKey == true) {
         keySeq(0, 2, 5, 1);
       }
-
+    //then umlaut
     }
     if (umlaut == true)
     {
@@ -194,6 +197,7 @@ void loop()
       if (uKey == true) {
         keySeq(0, 2, 5, 2);
       }
+    //then non-diacritic  
     }
     if (neKey == true) {
       keySeq(0, 2, 4, 1);
@@ -231,7 +235,7 @@ void loop()
   }
 
 
-  
+  //then the same thing again for cap letters
   if(caps ==true){
     if (acute == true)
     {
@@ -344,7 +348,7 @@ void loop()
     
     }
 }
-
+//this checks a combo of pins to see if the switch at that pair is closed
 boolean pinCheck(int row, int col)
 {
 
@@ -364,6 +368,7 @@ boolean pinCheck(int row, int col)
   pinMode(col, INPUT_PULLDOWN);
   return result;
 }
+//this turns off all the parts of the 4 way switch, as well as the LEDs associated with them
 void pinsOff() {
   grave = false;
   acute = false;
@@ -377,7 +382,9 @@ void pinsOff() {
 
 
 }
+//this figures out what code to send to the computer, then sends it
 void keySeq(int a, int b, int c, int d) {
+  //this first part turns my shorthand into the actual uint_8 and is bad because I couldn't figure out a better way to do it, so it is highly repetitive
   uint8_t one;
   if (a == 0)
   {
@@ -550,6 +557,7 @@ void keySeq(int a, int b, int c, int d) {
 
   uint8_t four = keyChoice(d);
 */
+//this part takes the uint_8 and puts them in this block to send those keystrokes to the computer, which displays the relevant character
   delay(200);
   Keyboard.set_modifier(MODIFIERKEY_ALT);
   Keyboard.send_now();
@@ -574,6 +582,7 @@ void keySeq(int a, int b, int c, int d) {
 
 
 }
+//this is the code that doesn't work(aka why the part aboce is at least 3x longer than it should be
 uint8_t keyChoice(int digit) {
   uint8_t choice;
   if (digit == 0)
