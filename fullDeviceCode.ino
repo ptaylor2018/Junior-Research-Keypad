@@ -230,7 +230,7 @@ void loop()
       keySeq(0, 1, 5, 5);
     }
     if (euKey == true){
-      keySeq(0,1,2,8);
+      keySeq(0,2,2,3);
       }
   }
 
@@ -343,7 +343,7 @@ void loop()
       keySeq(0, 1, 8, 7);
     }
     if (euKey == true){
-      keySeq(0,1,2,8);
+      keySeq(0,2,2,3);
       }
     
     }
